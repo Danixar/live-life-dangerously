@@ -1,13 +1,13 @@
 #!/bin/zsh
 
-echo "MEET YOUR DOOM! $1"
+echo "MEET YOUR DOOM! ${CHANCE}"
+		echo $HOME
 
-# NUM=$(echo $((1 + $RANDOM % 1000)))
-# if [[ "$NUM" -le "$1" ]]; then 
-#	echo 'This is it.'
-# 	echo "hello there!"
-# fi
-
-test() {
-	echo "MEET YOUR DOOM! $1"
+russianRoulette(){
+	NUM=$(echo $((1 + $RANDOM % 1000)))
+	if [[ "$NUM" -le "${CHANCE}" ]]; then 
+		echo "what a thought!"
+	fi
 }
+
+russianRoulette $1

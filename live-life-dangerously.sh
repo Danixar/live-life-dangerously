@@ -106,31 +106,34 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 	echo "I have the strange feeling that I’ve forgotten all of this before."
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	echo "So, it was me all along! Now I understand whats going on here!"
-	CHANCE=10
+	CHANCE=2
 elif [[ "$OSTYPE" == "cygwin" ]]; then
-    # POSIX compatibility layer and Linux environment emulation for Windows
-	CHANCE=50
+	CHANCE=3
 elif [[ "$OSTYPE" == "msys" ]]; then
-    # Lightweight shell and GNU utilities compiled for Windows (part of MinGW)
-	CHANCE=100
+	CHANCE=4
+elif [[ "$OSTYPE" == "freebsd"* ]]; then
+	CHANCE=5
 elif [[ "$OSTYPE" == "win32" ]]; then
 	# Is this even possible?
 	echo "I'd like to talk to you a lot more about this. Would you be interested in reading some of my literature?"
-	CHANCE=500
-elif [[ "$OSTYPE" == "freebsd"* ]]; then
-    # ...
-	CHANCE=100
+	CHANCE=10
 else
     echo "I'm a survivor - we're a dying breed"
 	CHANCE=0
 fi
+export CHANCE
 
-russianRoulette(){
-	NUM=$(echo $((1 + $RANDOM % 1000)))
-	if [[ "$NUM" -le "$1" ]]; then 
-		echo 'What a Thought!"
-	fi
+russianRoulette() {
+	echo "Hi There!"
+	echo "$CHANCE"
+	echo "fin"
+	# NUM=$(echo $((1 + $RANDOM % 1000)))
+	# if [[ "$NUM" -le "$CHANCE" ]]; then 
+	# 	echo "Hi There!"
+	# fi
 }
+export -f russianRoulette > /dev/null 
 
-# fswatch -0 $HOME --recursive | xargs -0 -n 1 -I {} russianRoulette $CHANCE {} & >> /dev/null
+
+fswatch -0 $HOME --recursive | xargs -0 -n 1 -I {} zsh -c 'russianRoulette' {} #& > /dev/null 
 # disown 
