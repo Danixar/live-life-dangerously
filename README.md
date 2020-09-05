@@ -1,5 +1,5 @@
 # The Only Way to True Enlightenment
-WORK IN PROGRESS
+WORK IN PROGRESS? I'm not sure I want to test this to be honest
 
 ```
 Life is suffering
